@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
+import Dashboard from './src/screens/Dashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +12,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name='Home' component={HomeScreen} options={{ title: "Home" }} />
-        {/* <Stack.Screen name='Finances' options={{ title: "Finanças" }} /> */}
+        <Stack.Screen name='Dashboard' component={Dashboard} options={{ title: "Dashboard" }} />
       </Stack.Navigator>
       
     </NavigationContainer>

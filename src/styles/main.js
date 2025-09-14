@@ -19,11 +19,26 @@ const styles = StyleSheet.create({
     textBold: {
         fontWeight: "bold"
     },
+    textWhite: {
+        color: "#FFF"
+    },
     inputField: {
         padding: 6,
         borderWidth: 2,
         borderColor: "#DDD"
     },
+    card: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 8,
+        backgroundColor: "#c5c5c5ff",
+        borderRadius: 8,
+        gap: 6
+    },
+    modal: {
+        backgroundColor: "#FFF",
+    }
 });
 
 export default styles;
