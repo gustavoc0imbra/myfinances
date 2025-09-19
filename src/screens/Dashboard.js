@@ -11,17 +11,19 @@ import styles from "../styles/main";
 import { useState } from "react";
 import Card from "../components/Card";
 import TextField from "../components/TextField";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function Dashboard({ navigation }) {
   const [bills, setBills] = useState([
-    { id: 1, title: "Pagar Uniara", date: Date.now(), status: false },
+    /* { id: 1, title: "Pagar Uniara", date: Date.now(), status: false },
     { id: 2, title: "Pagar CC", date: Date.now(), status: true },
-    { id: 3, title: "Pagar Uniara", date: Date.now(), status: false },
+    { id: 3, title: "Pagar Uniara", date: Date.now(), status: false }, */
   ]);
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date());
   const [nextId, setNextId] = useState(4);
   const [isOpened, setIsOpened] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const [selectedBill, setSelectedBill] = useState(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -55,6 +57,7 @@ export default function Dashboard({ navigation }) {
 
     setBills((prevBills) => [...prevBills, bill]);
     setNextId((prev) => prev + 1);
+    setDate(new Date())
     closeModal();
   };
 
@@ -92,7 +95,11 @@ export default function Dashboard({ navigation }) {
             />
           </TouchableOpacity>
         )}
+        ListEmptyComponent={
+          <Text style={[styles.textBold, styles.textSm]}>Sem contas cadastradas :(</Text>
+        }
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{ gap: 6 }}
       />
 
       {/* modal de nova conta */}
@@ -115,6 +122,17 @@ export default function Dashboard({ navigation }) {
             onChangeText={setTitle}
             placeholder={"Insira um título para conta"}
           />
+          <TextField labelTxt="Data" value={date.toLocaleDateString("pt-BR")} onPress={() => setShowDatePicker(true)} />
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              mode="date"
+              onChange={(event, date) => {
+                setDate(date)
+                setShowDatePicker(false)
+              }}
+            />
+          )}
           <View style={{ gap: 2 }}>
             <Button title="Adicionar" onPress={addBill} />
             <Button title="Cancelar" color="#ec0707ff" onPress={closeModal} />

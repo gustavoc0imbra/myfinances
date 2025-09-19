@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 4
+        gap: 4,
+        padding: 8
     },
     textSm: {
         fontSize: 24
